@@ -48,7 +48,7 @@ profiles:
     url: https://orcid.org/0000-0002-1825-0097
 
 interests:
-  - Python,
+  - Python
   - MATLAB
   - Java, Jax
   - React Native
@@ -103,15 +103,15 @@ skills:
     color: '#eeac02'
     color_border: '#f0bf23'
     items:
-      - name: Hiking in the Rockies
+      - name: Sailing
         description: ''
         percent: 80
         icon: person-simple-walk
-      - name: Building Custom PCs
+      - name: Long-distance Swimming
         description: ''
         percent: 90
         icon: cpu-chip
-      - name: Sci-Fi Reading
+      - name: Basketball
         description: ''
         percent: 70
         icon: book-open
