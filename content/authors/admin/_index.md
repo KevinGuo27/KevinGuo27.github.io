@@ -1,3 +1,4 @@
+---
 # Display name
 title: Kaicheng Guo
 
@@ -59,8 +60,6 @@ education:
     date_end: 2026-05-30
     summary: |
       GPA: 3.92/4.00
-
-      Selected Courses: Robust Algorithms for Machine Learning, Deep Learning, Computer Vision, Optimization, Learning & Seq Decision Making,Systems for Machine Learning, Probabilistic Meth. in CS, Functional analysis, PDE, Honors Statistical Inference, Graph Theory,Abstract Algebra.
     button:
       text: 'Read Thesis'
       url: 'https://example.com/thesis.pdf'
