@@ -1,13 +1,13 @@
 ---
 # Display name
-title: Alex Johnson
+title: Kaicheng Guo
 
 # Name pronunciation (optional)
 name_pronunciation: ''
 
 # Full name (for SEO)
-first_name: Alex
-last_name: Johnson
+first_name: Kaicheng
+last_name: Guo
 
 # Pronouns (optional)
 pronouns: he/him
@@ -23,18 +23,18 @@ superuser: true
 highlight_name: true
 
 # Role/position/tagline
-role: Senior AI Research Scientist
+role: Student
 
 # Organizations/Affiliations to display in Biography blox
 organizations:
-  - name: Meta AI
+  - name: Brown University
     url: https://ai.meta.com/
 
 # Social network links
 # Need to use another icon? Simply download the SVG icon to your `assets/media/icons/` folder.
 profiles:
   - icon: at-symbol
-    url: 'mailto:alex.johnson@meta.com'
+    url: 'mailto:kaicheng guo@brown.edu'
     label: E-mail Me
   - icon: brands/x
     url: https://twitter.com/AlexAIResearch
@@ -48,38 +48,24 @@ profiles:
     url: https://orcid.org/0000-0002-1825-0097
 
 interests:
-  - Large Language Models
-  - Computer Vision
-  - Reinforcement Learning
-  - AI Ethics
-
+  - Python,
+  - MATLAB
+  - Java, Jax
+  - React Native
+  - TensorFlow
 education:
-  - area: PhD Computer Science (AI Focus)
-    institution: Stanford University
-    date_start: 2015-09-01
-    date_end: 2019-06-30
+  - area: B.S. in Computer Science and Applied Mathematics (Honors)
+    institution: Brown University
+    date_start: 2022-09-01
+    date_end: 2026-05-30
     summary: |
-      Thesis on _Scaling Laws for Neural Language Models_. Supervised by Prof. Andrew Ng. Published 5 papers in NeurIPS and ICML, with 2 best paper awards.
+      GPA: 3.92/4.00
+
+      Selected Courses: Robust Algorithms for Machine Learning, Deep Learning, Computer Vision, Optimization, Learning & Seq Decision Making,Systems for Machine Learning, Probabilistic Meth. in CS, Functional analysis, PDE, Honors Statistical Inference, Graph Theory,Abstract Algebra.
     button:
       text: 'Read Thesis'
       url: 'https://example.com/thesis.pdf'
-  - area: MS Computer Science
-    institution: Carnegie Mellon University
-    date_start: 2013-09-01
-    date_end: 2015-05-31
-    summary: |
-      GPA: 4.0/4.0
-
-      Specialized in machine learning and robotics.
-  - area: BS Computer Science
-    institution: MIT
-    date_start: 2009-09-01
-    date_end: 2013-05-31
-    summary: |
-      GPA: 3.9/4.0
-
-      Minored in Mathematics. President of AI Club.
-
+  
 work:
   - position: Senior AI Research Scientist
     company_name: Meta AI
@@ -135,8 +121,8 @@ skills:
 languages:
   - name: English
     percent: 100
-  - name: Spanish
-    percent: 50
+  - name: Chinese
+    percent: 100
 
 # Awards.
 #   Add/remove as many awards below as you like.
