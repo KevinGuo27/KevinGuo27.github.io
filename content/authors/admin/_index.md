@@ -151,3 +151,4 @@ awards:
 ---
 
 Kaicheng Guo is a Undergraduate Student at Brown Universtiy, ......
+Selected Courses: Robust Algorithms for Machine Learning, Deep Learning,Computer Vision, Optimization, Learning & Seq Decision Making, Systems for Machine Learning, Probabilistic Meth. in CS, Functional analysis, PDE, Honors Statistical Inference, Graph Theory, Abstract Algebra
