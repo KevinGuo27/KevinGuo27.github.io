@@ -47,7 +47,8 @@ profiles:
   - icon: academicons/orcid
     url: https://orcid.org/0000-0002-1825-0097
 
-interests:
+# interests:
+skills:
   - Python
   - MATLAB
   - Java, Jax
