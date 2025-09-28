@@ -16,13 +16,13 @@ publication_types: ["article"]
 publication: ""
 publication_short: ""
 
-abstract: ........
+abstract: 文章摘要部分........
 
 # Summary. An optional shortened abstract.
-summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum.
+summary: 核心内容概要.
 
 tags:
-- Large Language Models
+- Reinforcement Learning
 
 featured: true
 
