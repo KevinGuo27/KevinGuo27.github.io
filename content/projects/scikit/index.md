@@ -1,6 +1,6 @@
 ---
 title: RNNs as Superior Function Approximators (To submit ICLR 2026) 
-date: May 2024 -Present
+date: 2024-05-01
 links:
   - type: site
     url: https://github.com/scikit-learn/scikit-learn
