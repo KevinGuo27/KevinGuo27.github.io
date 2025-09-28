@@ -1,6 +1,6 @@
 ---
-title: PyTorch
-date: 2023-10-26
+title: Research Intern-RL for Manipulation in Unknown Environments
+date: May 2025 - July 2025
 links:
   - type: site
     url: https://github.com/pytorch/pytorch
@@ -10,6 +10,11 @@ tags:
   - Markdown
 ---
 
-PyTorch is a Python package that provides tensor computation (like NumPy) with strong GPU acceleration.
+Pittsburgh, PA
+PI: Professor Maxim Likhachev, Collaborator: Muhammad Suhail Saleem, Robotics Institute,Carnegie Mellon University 
+Designed a framework for robotic manipulation under complete visual occlusion, enabling
+action based solely on tactile and proprioceptive signals.
+Addressed the challenge of manipulating target objects without visual input, contributing
+toward robust real-world robotic systems.
 
 <!--more-->
