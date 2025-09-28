@@ -1,7 +1,7 @@
 ---
 title: Exploration in POMDPs (In Progress)
 # Pandas
-date: Apr 2025 - Present
+date: 2025-04-01
 links:
   - type: site
     url: https://github.com/pandas-dev/pandas
