@@ -30,7 +30,7 @@ publication_short: In *ICW*
 abstract: 这是摘要部分.
 
 # Summary. An optional shortened abstract.
-summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum.
+summary: 核心内容概要.
 
 tags:
   - RL强化学习
