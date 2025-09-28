@@ -1,6 +1,6 @@
 ---
 title: Research Intern-RL for Manipulation in Unknown Environments
-date: May 2025 - July 2025
+date: 2025-05-01
 links:
   - type: site
     url: https://github.com/pytorch/pytorch
