@@ -5,10 +5,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  assetPrefix:
-    process.env.NODE_ENV === "production" ? "/KevinGuo27.github.io" : "",
-  basePath:
-    process.env.NODE_ENV === "production" ? "/KevinGuo27.github.io" : "",
 };
 
 module.exports = nextConfig;
