@@ -15,25 +15,27 @@ import {
   Briefcase,
   Layers,
   ExternalLink,
-  CircleUserRound,
+  User,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
 // === Editable profile data ===
 const PROFILE = {
   name: "Kaicheng (Kevin) Guo",
-  title: "CS & Applied Math @ Brown | RL + Representation Learning",
-  emailDisplay: "kaicheng guo@brown.edu", // kept exactly as in CV — update if needed
-  emailHref: "mailto:kaicheng%20guo@brown.edu",
+  title:
+    "CS & Applied Math @ Brown | Reinforcement Learning, Continual Learning, Partial Observability",
+  emailDisplay: "kaicheng_guo@brown.edu", // kept exactly as in CV — update if needed
+  emailHref: "mailto:kaicheng%20_guo@brown.edu",
   phone: "(401) 259-4369",
   location: "Providence, RI, USA",
-  status: "US Permanent Resident (Green Card)",
   headshot: "/headshot.jpg", // replace with your uploaded image name in the repo (e.g., headshot.jpg)
   cvPath: "/Kaicheng_Guo_CV.pdf", // place your CV at the project root with this filename
   socials: [
-    // { label: "Google Scholar", href: "#" },
-    // { label: "Twitter", href: "#" },
-    // { label: "GitHub", href: "#" },
+    {
+      label: "Google Scholar",
+      href: "https://scholar.google.com/citations?user=1WVyZK4AAAAJ&hl=en",
+    },
+    { label: "GitHub", href: "https://github.com/KevinGuo27" },
   ],
 };
 
@@ -54,44 +56,36 @@ const PUBLICATIONS = [
     title:
       "Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning",
     authors:
-      "Naicheng He*, Kaicheng Guo*, Arjun Prakash*, Saket Tiwari, Tyrone Serapio, Ruo Yu Tao, Amy Greenwald, George Konidaris",
-    venue: "Under review at ICLR 2026 (2025)",
-    links: [{ label: "Paper (placeholder)", href: "#" }],
-    badges: ["Continual Learning", "Optimization", "Hessian"],
-  },
-  {
-    title:
-      "Benchmarking Partial Observability in RL with a Suite of Memory‑Improvable Domains",
-    authors: "Ruo Yu Tao*, Kaicheng Guo*, Cameron Allen, George Konidaris",
-    venue: "Reinforcement Learning Conference (RLC 2025)",
-    links: [
-      // If you have a public link, add here
-    ],
-    badges: ["Partial Observability", "Benchmarks", "JAX"],
-  },
-  {
-    title:
-      "Mitigating Loss of Plasticity by Preventing Hessian Spectral Collapse",
-    authors:
-      "Naicheng He*, Kaicheng Guo*, Arjun Prakash*, Saket Tiwari, Tyrone Serapio, Ruo Yu Tao, Amy Greenwald, George Konidaris",
-    venue: "NeurIPS 2025 Workshop on ARLET",
-    links: [
-      // If you have a public link, add here
-    ],
-    badges: ["Workshop", "Hessian", "Plasticity"],
-  },
-  {
-    title: "RNNs as Superior Function Approximators",
-    authors: "Kaicheng Guo, George Konidaris",
-    venue: "Preprint / Ongoing (2024–)",
+      "Naicheng He*, <strong>Kaicheng Guo</strong>*, Arjun Prakash*, Saket Tiwari, Ruo Yu Tao, Tyrone Serapio, Amy Greenwald, George Konidaris",
+    venue: "Under review at ICLR 2026",
+    abstract:
+      "We investigate why deep neural networks suffer from loss of plasticity in deep continual learning, failing to learn new tasks without reinitializing parameters. We show that this failure is preceded by Hessian spectral collapse at new-task initialization, where meaningful curvature directions vanish and gradient descent becomes ineffective. To characterize the necessary condition for successful training, we introduce the notion of τ-trainability and show that current plasticity preserving algorithms can be unified under this framework. Targeting spectral collapse directly, we then discuss the Kronecker factored approximation of the Hessian, which motivates two regularization enhancements: maintaining high effective feature rank and applying L2 penalties. Experiments on continual supervised and reinforcement learning tasks confirm that combining these two regularizers effectively preserves plasticity.",
+    image: "/spectral-collapse-visualization.jpg",
     links: [
       { label: "arXiv", href: "https://arxiv.org/abs/2509.22335" },
-      {
-        label: "OpenReview",
-        href: "https://openreview.net/forum?id=HUTCbYOW5E",
-      },
+      { label: "PDF", href: "https://arxiv.org/pdf/2509.22335.pdf" },
     ],
-    badges: ["RNN", "Function Approximation", "Theory"],
+    badges: [
+      "Continual Learning",
+      "Optimization",
+      "Hessian",
+      "Spectral Analysis",
+    ],
+  },
+  {
+    title:
+      "Benchmarking Partial Observability in Reinforcement Learning with a Suite of Memory-Improvable Domains",
+    authors:
+      "Ruo Yu Tao*, <strong>Kaicheng Guo</strong>*, Cameron Allen, George Konidaris",
+    venue: "Reinforcement Learning Conference (RLC 2025)",
+    abstract:
+      "Mitigating partial observability is a necessary but challenging task for general reinforcement learning algorithms. To improve an algorithm's ability to mitigate partial observability, researchers need comprehensive benchmarks to gauge progress. Most algorithms tackling partial observability are only evaluated on benchmarks with simple forms of state aliasing, such as feature masking and Gaussian noise. Such benchmarks do not represent the many forms of partial observability seen in real domains, like visual occlusion or unknown opponent intent. We argue that a partially observable benchmark should have two key properties. The first is coverage in its forms of partial observability, to ensure an algorithm's generalizability. The second is a large gap between the performance of agents with more or less state information, all other factors roughly equal. This gap implies that an environment is memory improvable: where performance gains in a domain are from an algorithm's ability to cope with partial observability as opposed to other factors. We introduce best-practice guidelines for empirically benchmarking reinforcement learning under partial observability, as well as the open-source library POBAX: Partially Observable Benchmarks in JAX.",
+    image: "pobax.jpg",
+    links: [
+      { label: "arXiv", href: "https://arxiv.org/abs/2508.00046" },
+      { label: "PDF", href: "https://arxiv.org/pdf/2508.00046.pdf" },
+    ],
+    badges: ["Partial Observability", "Benchmarks", "JAX", "POBAX"],
   },
 ];
 
@@ -160,7 +154,6 @@ const SKILLS = [
   "React Native",
   "Reinforcement Learning",
   "Optimization",
-  "Computer Vision",
 ];
 
 const HOBBIES = ["Sailing", "Long‑distance Swimming", "Basketball"];
@@ -193,7 +186,7 @@ export default function PersonalSite() {
             transition={{ duration: 0.4 }}
             src={PROFILE.headshot}
             alt={`${PROFILE.name} headshot`}
-            className="w-28 h-28 rounded-2xl object-cover shadow"
+            className="w-56 h-56 rounded-2xl object-cover shadow"
           />
           <div className="flex-1">
             <motion.h1
@@ -215,14 +208,37 @@ export default function PersonalSite() {
               <span className="inline-flex items-center gap-1">
                 <MapPin className="w-4 h-4" /> {PROFILE.location}
               </span>
-              <span className="inline-flex items-center gap-1">
-                <CircleUserRound className="w-4 h-4" /> {PROFILE.status}
-              </span>
+            </div>
+            <div className="mt-4 text-sm text-slate-600 leading-relaxed">
+              <p>
+                I am a fourth year undergraduate student concentrated in
+                Computer Science and Applied Mathematics at Brown University. I
+                currently conduct research in the{" "}
+                <a
+                  href="http://irl.cs.brown.edu/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-blue-600 hover:text-blue-800 underline"
+                >
+                  Intelligent Robot Lab (IRL)
+                </a>
+                advised by{" "}
+                <a
+                  href="https://cs.brown.edu/people/gdk/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-blue-600 hover:text-blue-800 underline"
+                >
+                  Prof. George Konidaris
+                </a>
+                . My current research interest lies in continual learning and
+                reinforcement learning in partially observable environments.
+                Outside of research, I enjoy everything about
+                science-fiction—favorites include Interstellar, Westworld, and
+                The Three-Body Problem.
+              </p>
             </div>
             <div className="mt-4 flex flex-wrap gap-2">
-              <Button asChild size="sm" className="rounded-2xl">
-                <a href={PROFILE.emailHref}>Email me</a>
-              </Button>
               <Button
                 asChild
                 size="sm"
@@ -277,14 +293,40 @@ export default function PersonalSite() {
       </Section>
 
       {/* Publications */}
-      <Section icon={BookOpen} title="Publications & Preprints">
+      <Section icon={BookOpen} title="Publications">
         <div className="grid gap-4">
           {PUBLICATIONS.map((p, idx) => (
             <Card key={idx} className="rounded-2xl">
               <CardContent className="p-5">
+                {p.image && (
+                  <div className="mb-4">
+                    {p.image.endsWith(".pdf") ? (
+                      <embed
+                        src={p.image}
+                        type="application/pdf"
+                        className="w-full max-w-2xl mx-auto rounded-lg shadow-sm"
+                        style={{ height: "500px" }}
+                      />
+                    ) : (
+                      <img
+                        src={p.image}
+                        alt={`${p.title} visualization`}
+                        className="w-full max-w-2xl mx-auto rounded-lg shadow-sm"
+                      />
+                    )}
+                  </div>
+                )}
                 <h3 className="font-semibold leading-snug">{p.title}</h3>
-                <p className="mt-1 text-sm text-slate-700">{p.authors}</p>
+                <p
+                  className="mt-1 text-sm text-slate-700"
+                  dangerouslySetInnerHTML={{ __html: p.authors }}
+                ></p>
                 <p className="mt-1 text-sm text-slate-600">{p.venue}</p>
+                {p.abstract && (
+                  <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                    {p.abstract}
+                  </p>
+                )}
                 <div className="mt-2 flex flex-wrap gap-2">
                   {p.badges.map((b) => (
                     <Pill key={b}>{b}</Pill>
@@ -367,7 +409,7 @@ export default function PersonalSite() {
       </Section>
 
       {/* Teaching */}
-      <Section icon={BookOpen} title="Teaching">
+      <Section icon={BookOpen} title="Undergraduate Teaching Assistant">
         <div className="grid gap-4">
           {TEACHING.map((t, i) => (
             <Card key={i} className="rounded-2xl">
