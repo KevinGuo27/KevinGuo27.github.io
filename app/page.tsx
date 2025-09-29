@@ -80,7 +80,7 @@ const PUBLICATIONS = [
     venue: "Reinforcement Learning Conference (RLC 2025)",
     abstract:
       "Mitigating partial observability is a necessary but challenging task for general reinforcement learning algorithms. To improve an algorithm's ability to mitigate partial observability, researchers need comprehensive benchmarks to gauge progress. Most algorithms tackling partial observability are only evaluated on benchmarks with simple forms of state aliasing, such as feature masking and Gaussian noise. Such benchmarks do not represent the many forms of partial observability seen in real domains, like visual occlusion or unknown opponent intent. We argue that a partially observable benchmark should have two key properties. The first is coverage in its forms of partial observability, to ensure an algorithm's generalizability. The second is a large gap between the performance of agents with more or less state information, all other factors roughly equal. This gap implies that an environment is memory improvable: where performance gains in a domain are from an algorithm's ability to cope with partial observability as opposed to other factors. We introduce best-practice guidelines for empirically benchmarking reinforcement learning under partial observability, as well as the open-source library POBAX: Partially Observable Benchmarks in JAX.",
-    image: "pobax.jpg",
+    image: "/pobax.jpg",
     links: [
       { label: "arXiv", href: "https://arxiv.org/abs/2508.00046" },
       { label: "PDF", href: "https://arxiv.org/pdf/2508.00046.pdf" },
