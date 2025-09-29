@@ -9,6 +9,9 @@
 # Generated site output
 public/
 
+# Next.js build output
+out/
+
 # Hugo resources (processed assets)
 resources/
 
