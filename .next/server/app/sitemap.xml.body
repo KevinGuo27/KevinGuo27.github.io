@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>https://kevinguo27.github.io</loc>
+<lastmod>2025-10-07T06:49:21.032Z</lastmod>
+<changefreq>weekly</changefreq>
+<priority>1</priority>
+</url>
+<url>
+<loc>https://kevinguo27.github.io/Kaicheng_Guo_CV.pdf</loc>
+<lastmod>2025-10-07T06:49:21.032Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://kevinguo27.github.io/headshot.jpg</loc>
+<lastmod>2025-10-07T06:49:21.032Z</lastmod>
+<changefreq>yearly</changefreq>
+<priority>0.3</priority>
+</url>
+<url>
+<loc>https://kevinguo27.github.io/spectral-collapse-visualization.jpg</loc>
+<lastmod>2025-10-07T06:49:21.032Z</lastmod>
+<changefreq>yearly</changefreq>
+<priority>0.3</priority>
+</url>
+<url>
+<loc>https://kevinguo27.github.io/pobax.jpg</loc>
+<lastmod>2025-10-07T06:49:21.032Z</lastmod>
+<changefreq>yearly</changefreq>
+<priority>0.3</priority>
+</url>
+</urlset>

@@ -605,7 +605,7 @@ export default function PersonalSite() {
               </a>
             </div>
             <div className="text-slate-500">
-              © {new Date().getFullYear()} {PROFILE.name} • Last updated: {new Date().toLocaleDateString()}
+              © {new Date().getFullYear()} {PROFILE.name} • Updated: {new Date().toLocaleString()}
             </div>
           </CardContent>
         </Card>
