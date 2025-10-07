@@ -57,7 +57,7 @@ const PUBLICATIONS = [
       "Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning",
     authors:
       "Naicheng He*, <strong>Kaicheng Guo</strong>*, Arjun Prakash*, Saket Tiwari, Ruo Yu Tao, Tyrone Serapio, Amy Greenwald, George Konidaris",
-    venue: "Under review at ICLR 2026",
+    venue: "Under review at ICLR 2026; Accepted at NeurIPS ARLET Workshop 2025",
     abstract:
       "We investigate why deep neural networks suffer from loss of plasticity in deep continual learning, failing to learn new tasks without reinitializing parameters. We show that this failure is preceded by Hessian spectral collapse at new-task initialization, where meaningful curvature directions vanish and gradient descent becomes ineffective. To characterize the necessary condition for successful training, we introduce the notion of τ-trainability and show that current plasticity preserving algorithms can be unified under this framework. Targeting spectral collapse directly, we then discuss the Kronecker factored approximation of the Hessian, which motivates two regularization enhancements: maintaining high effective feature rank and applying L2 penalties. Experiments on continual supervised and reinforcement learning tasks confirm that combining these two regularizers effectively preserves plasticity.",
     image: "/spectral-collapse-visualization.jpg",
@@ -94,36 +94,58 @@ const RESEARCH = [
     project: "Exploration in POMDPs (In Progress)",
     org: "Brown University",
     time: "Apr 2025 – Present",
+    image: "/lock_environment_diagram.png",
     bullets: [
-      "Investigating exploration strategies in partially observable domains using memory traces.",
-      "Trajectory‑level exploration methods that handle unobserved states.",
+      "Investigating trajectory-based exploration strategies for partially observable domains where traditional state-based exploration fails.",
+      "Developed the Lock environment, where rewards depend on modular properties of full trajectories rather than single observations.",
+      "Studying how memory traces and recurrent mechanisms enable agents to infer hidden structures and recover near-optimal memory function.",
     ],
   },
   {
-    project: "RNNs as Superior Function Approximators",
+    project: "RNNs as Superior Function Approximators (In Progress)",
     org: "Brown University",
     time: "May 2024 – Present",
+    image: "/mujoco_per_env_best_LD.jpg",
+    image2: "/atari_per_env_best_depth.jpg",
     bullets: [
-      "RNNs outperform MLPs in fully observable environments via lower approximation error.",
-      "Proposed RNN‑Skip: removes recurrence while preserving benefits of RNN representations.",
+      "Investigating why RNNs outperform MLPs even in fully observable environments.",
+      "Demonstrated that MLPs break the Markov property after embedding and show empirically RNN exhibit greater expressiveness.",
+      "Proposed RNN-Skip, a novel architecture that removes explicit recurrence while retaining the representational benefits of recurrent models.",
     ],
+  },
+  {
+    project: "TOLD-ZERO: Model-Based Reinforcement Learning",
+    org: "Brown University",
+    time: "Jan 2024 – May 2024",
+    image: "/told_zero_performance.png",
+    image2: "/told_zero_performance_2.png",
+    bullets: [
+      "Developed TOLD-ZERO agent for model-based reinforcement learning with improved sample efficiency.",
+      "Implemented and evaluated performance on Cartpole environment, achieving stable returns of 200.",
+      "Analyzed training dynamics showing high variability in early phases followed by stable convergence.",
+    ],
+    links: [{ label: "PDF", href: "/told_zero.pdf" }],
   },
   {
     project:
-      "Benchmarking Partial Observability in RL with a Suite of Memory‑Improvable Domains",
+      "A Survey and Implementation of Fast Approximate Maxflow Algorithms",
     org: "Brown University",
-    time: "Dec 2024 – Feb 2025",
+    time: "Jan 2023 – May 2023",
     bullets: [
-      "Introduced POBAX (Partially Observable Benchmarks in JAX) for standardized evaluation.",
-      "Characterized types of partial observability; curated representative tasks and best‑practice guidelines.",
+      "Conducted comprehensive survey of fast approximate maximum flow algorithms including theoretical analysis and practical implementations.",
+      "Implemented and compared performance of various maxflow algorithms across different graph types and problem sizes.",
+      "Analyzed trade-offs between accuracy and computational efficiency in approximate solutions to network flow problems.",
     ],
+    links: [{ label: "PDF", href: "/top_project_maxflow_algorithms.pdf" }],
   },
 ];
 
 const EXPERIENCE = [
   {
     role: "Research Intern: RL for Manipulation in Unknown Environments",
-    org: "Robotics Institute, Carnegie Mellon University (PI: Maxim Likhachev)",
+    org: "Robotics Institute, Carnegie Mellon University",
+    pi: "Maxim Likhachev",
+    piLink: "https://www.cs.cmu.edu/~maxim/",
     time: "May 2025 – Jul 2025",
     bullets: [
       "Designed a manipulation framework under complete visual occlusion using tactile + proprioception only.",
@@ -137,11 +159,15 @@ const TEACHING = [
     course: "CS2951F: Learning and Sequential Decision Making (Graduate)",
     org: "Brown University",
     time: "Fall 2025",
+    lecturer: "Michael Littman",
+    lecturerLink: "https://www.littmania.com/",
   },
   {
     course: "APMA1200: Operations Research",
     org: "Brown University",
     time: "Spring 2025",
+    lecturer: "Hui Wang",
+    lecturerLink: "https://vivo.brown.edu/display/hwanag",
   },
 ];
 
@@ -156,7 +182,7 @@ const SKILLS = [
   "Optimization",
 ];
 
-const HOBBIES = ["Sailing", "Long‑distance Swimming", "Basketball"];
+const HOBBIES = ["Science Fiction", "Sailing", "Basketball"];
 
 // === UI helpers ===
 const Section = ({ icon: Icon, title, children }: any) => (
@@ -366,6 +392,40 @@ export default function PersonalSite() {
           {RESEARCH.map((r, i) => (
             <Card key={i} className="rounded-2xl">
               <CardContent className="p-5">
+                {r.image && (
+                  <div className="mb-4">
+                    {r.image.endsWith(".pdf") ? (
+                      <embed
+                        src={r.image}
+                        type="application/pdf"
+                        className="w-full max-w-2xl mx-auto rounded-lg shadow-sm"
+                        style={{ height: "500px" }}
+                      />
+                    ) : r.image2 ? (
+                      <div className="flex flex-col md:flex-row gap-4 justify-center">
+                        <img
+                          src={r.image}
+                          alt={`${r.project} visualization 1`}
+                          className="w-full md:w-1/2 max-w-2xl mx-auto rounded-lg shadow-sm"
+                          style={{ height: "400px", objectFit: "contain" }}
+                        />
+                        <img
+                          src={r.image2}
+                          alt={`${r.project} visualization 2`}
+                          className="w-full md:w-1/2 max-w-2xl mx-auto rounded-lg shadow-sm"
+                          style={{ height: "400px", objectFit: "contain" }}
+                        />
+                      </div>
+                    ) : (
+                      <img
+                        src={r.image}
+                        alt={`${r.project} visualization`}
+                        className="w-full max-w-2xl mx-auto rounded-lg shadow-sm"
+                        style={{ objectFit: "contain" }}
+                      />
+                    )}
+                  </div>
+                )}
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                   <div>
                     <h3 className="font-semibold">{r.project}</h3>
@@ -378,6 +438,28 @@ export default function PersonalSite() {
                     <li key={idx}>{b}</li>
                   ))}
                 </ul>
+                {!!r.links?.length && (
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {r.links.map((l) => (
+                      <Button
+                        key={l.href}
+                        asChild
+                        size="sm"
+                        variant="outline"
+                        className="rounded-2xl"
+                      >
+                        <a
+                          href={l.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center"
+                        >
+                          {l.label} <ExternalLink className="w-4 h-4 ml-1" />
+                        </a>
+                      </Button>
+                    ))}
+                  </div>
+                )}
               </CardContent>
             </Card>
           ))}
@@ -386,25 +468,54 @@ export default function PersonalSite() {
 
       {/* Experience */}
       <Section icon={Briefcase} title="Experience">
-        <div className="grid gap-4">
-          {EXPERIENCE.map((x, i) => (
-            <Card key={i} className="rounded-2xl">
-              <CardContent className="p-5">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
-                  <div>
-                    <h3 className="font-semibold">{x.role}</h3>
-                    <p className="text-sm text-slate-600">{x.org}</p>
-                  </div>
-                  <div className="text-sm text-slate-600">{x.time}</div>
-                </div>
-                <ul className="mt-3 list-disc pl-5 text-sm text-slate-700 space-y-1">
-                  {x.bullets.map((b, idx) => (
-                    <li key={idx}>{b}</li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="flex flex-col lg:flex-row gap-6 items-start">
+          <div className="lg:w-1/3 flex-shrink-0">
+            <img
+              src="/intern.png"
+              alt="Internship Experience"
+              className="w-full rounded-lg shadow-sm"
+              style={{ height: "250px", objectFit: "contain" }}
+            />
+          </div>
+          <div className="lg:w-2/3 flex-1">
+            <div className="grid gap-4">
+              {EXPERIENCE.map((x, i) => (
+                <Card key={i} className="rounded-2xl">
+                  <CardContent className="p-5">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                      <div>
+                        <h3 className="font-semibold">{x.role}</h3>
+                        <p className="text-sm text-slate-600">{x.org}</p>
+                        {x.pi && (
+                          <p className="text-sm text-slate-600 mt-1">
+                            PI:{" "}
+                            {x.piLink ? (
+                              <a
+                                href={x.piLink}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-blue-600 hover:text-blue-800 underline"
+                              >
+                                {x.pi}
+                              </a>
+                            ) : (
+                              x.pi
+                            )}
+                          </p>
+                        )}
+                      </div>
+                      <div className="text-sm text-slate-600">{x.time}</div>
+                    </div>
+                    <ul className="mt-3 list-disc pl-5 text-sm text-slate-700 space-y-1">
+                      {x.bullets.map((b, idx) => (
+                        <li key={idx}>{b}</li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
         </div>
       </Section>
 
@@ -418,6 +529,23 @@ export default function PersonalSite() {
                   <div>
                     <h3 className="font-semibold">{t.course}</h3>
                     <p className="text-sm text-slate-600">{t.org}</p>
+                    {t.lecturer && (
+                      <p className="text-sm text-slate-600 mt-1">
+                        Lecturer:{" "}
+                        {t.lecturerLink ? (
+                          <a
+                            href={t.lecturerLink}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-blue-600 hover:text-blue-800 underline"
+                          >
+                            {t.lecturer}
+                          </a>
+                        ) : (
+                          t.lecturer
+                        )}
+                      </p>
+                    )}
                   </div>
                   <div className="text-sm text-slate-600">{t.time}</div>
                 </div>
