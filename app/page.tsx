@@ -28,7 +28,7 @@ const PROFILE = {
   emailHref: "mailto:gkc@engineering.upenn.edu",
   phone: "(401) 259-4369",
   location: "Philadelphia, PA, USA",
-  headshot: "/headshot.jpg",
+  headshot: "/headshot-2026.jpg",
   cvPath: "/Kaicheng_Guo_CV.pdf",
   socials: [
     {
