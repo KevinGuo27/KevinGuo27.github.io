@@ -23,11 +23,11 @@ import { motion } from "framer-motion";
 const PROFILE = {
   name: "Kaicheng (Kevin) Guo",
   title:
-    "CS & Applied Math @ Brown | Reinforcement Learning, Continual Learning, Partial Observability",
-  emailDisplay: "kaicheng_guo@brown.edu",
-  emailHref: "mailto:kaicheng_guo@brown.edu",
+    "PhD Student @ UPenn | Reinforcement Learning, Continual Learning, Partial Observability",
+  emailDisplay: "gkc@engineering.upenn.edu",
+  emailHref: "mailto:gkc@engineering.upenn.edu",
   phone: "(401) 259-4369",
-  location: "Providence, RI, USA",
+  location: "Philadelphia, PA, USA",
   headshot: "/headshot.jpg",
   cvPath: "/Kaicheng_Guo_CV.pdf",
   socials: [
@@ -40,6 +40,12 @@ const PROFILE = {
 };
 
 const EDUCATION = [
+  {
+    school: "University of Pennsylvania",
+    degree: "Ph.D. Student",
+    time: "2026 – Present",
+    details: ["Advisor: Prof. Eric Eaton"],
+  },
   {
     school: "Brown University",
     degree: "B.S. in Computer Science & Applied Mathematics (Honors)",
@@ -56,10 +62,10 @@ const PUBLICATIONS = [
     title:
       "Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning",
     authors:
-      "Naicheng He*, <strong>Kaicheng Guo</strong>*, Arjun Prakash*, Saket Tiwari, Ruo Yu Tao, Tyrone Serapio, Amy Greenwald, George Konidaris",
-    venue: "Under review at ICLR 2026; Accepted at NeurIPS ARLET Workshop 2025",
+      "Arjun Prakash*, Naicheng He*, <strong>Kaicheng Guo</strong>*, Saket Tiwari, Tyrone Serapio, Ruo Yu Tao, Amy Greenwald, George Konidaris",
+    venue: "International Conference on Machine Learning (ICML 2026)",
     abstract:
-      "We investigate why deep neural networks suffer from loss of plasticity in deep continual learning, failing to learn new tasks without reinitializing parameters. We show that this failure is preceded by Hessian spectral collapse at new-task initialization, where meaningful curvature directions vanish and gradient descent becomes ineffective. To characterize the necessary condition for successful training, we introduce the notion of τ-trainability and show that current plasticity preserving algorithms can be unified under this framework. Targeting spectral collapse directly, we then discuss the Kronecker factored approximation of the Hessian, which motivates two regularization enhancements: maintaining high effective feature rank and applying L2 penalties. Experiments on continual supervised and reinforcement learning tasks confirm that combining these two regularizers effectively preserves plasticity.",
+      "We investigate why deep neural networks suffer from loss of plasticity in continual learning, and thus fail to learn new tasks without reinitializing parameters. We show that this failure is preceded by Hessian spectral collapse at new-task initialization, where meaningful curvature directions vanish and gradient descent becomes ineffective. Analyzing a linearized ReLU network, we derive explicit ε-rank conditions for successful training and prove that the loss-weighted Gram matrix is spectrally equivalent to the Generalized Gauss-Newton approximation, thereby relating NTK dynamics to Hessian curvature. Targeting spectral collapse directly, we then discuss the Kronecker factored approximation of the Hessian, which motivates two regularization enhancements: maintaining high effective feature rank and applying L2 penalties. Experiments on continual supervised and reinforcement learning tasks confirm that combining these two regularizers effectively preserves plasticity.",
     image: "/spectral-collapse-visualization.jpg",
     links: [
       { label: "arXiv", href: "https://arxiv.org/abs/2509.22335" },
@@ -320,9 +326,14 @@ export default function PersonalSite() {
             </div>
             <div className="mt-4 text-sm text-slate-600 leading-relaxed">
               <p>
-                I am a fourth year undergraduate student concentrated in
-                Computer Science and Applied Mathematics at Brown University. I
-                currently conduct research in the{" "}
+                I am a PhD student at the University of Pennsylvania, advised
+                by{" "}
+                <TextLink href="https://www.engineering.upenn.edu/~eeaton/">
+                  Prof. Eric Eaton
+                </TextLink>
+                . Previously, I studied Computer Science and Applied
+                Mathematics at Brown University, where I conducted research in
+                the{" "}
                 <TextLink href="http://irl.cs.brown.edu/">
                   Intelligent Robot Lab (IRL)
                 </TextLink>{" "}

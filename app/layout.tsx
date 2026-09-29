@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Kaicheng (Kevin) Guo",
-  description: "CS & Applied Math @ Brown | RL + Representation Learning",
+  description: "PhD Student @ UPenn | RL + Representation Learning",
 };
 
 export default function RootLayout({
