@@ -1,13 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Static export to ./out, published to GitHub Pages by .github/workflows/deploy.yml
   output: "export",
   trailingSlash: true,
   images: {
     unoptimized: true,
   },
-  // GitHub Pages configuration
-  basePath: process.env.NODE_ENV === 'production' ? '' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '' : '',
 };
 
 module.exports = nextConfig;

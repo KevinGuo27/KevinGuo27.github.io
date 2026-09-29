@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
+import type { ReactNode } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Button, type ButtonProps } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
   Github,
@@ -15,21 +15,21 @@ import {
   Briefcase,
   Layers,
   ExternalLink,
-  User,
+  type LucideIcon,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
-// === Editable profile data ===
+// === Editable profile data (images and PDFs live in public/, referenced as "/filename") ===
 const PROFILE = {
   name: "Kaicheng (Kevin) Guo",
   title:
     "CS & Applied Math @ Brown | Reinforcement Learning, Continual Learning, Partial Observability",
-  emailDisplay: "kaicheng_guo@brown.edu", // kept exactly as in CV — update if needed
-  emailHref: "mailto:kaicheng%20_guo@brown.edu",
+  emailDisplay: "kaicheng_guo@brown.edu",
+  emailHref: "mailto:kaicheng_guo@brown.edu",
   phone: "(401) 259-4369",
   location: "Providence, RI, USA",
-  headshot: "/headshot.jpg", // replace with your uploaded image name in the repo (e.g., headshot.jpg)
-  cvPath: "/Kaicheng_Guo_CV.pdf", // place your CV at the project root with this filename
+  headshot: "/headshot.jpg",
+  cvPath: "/Kaicheng_Guo_CV.pdf",
   socials: [
     {
       label: "Google Scholar",
@@ -89,6 +89,7 @@ const PUBLICATIONS = [
   },
 ];
 
+// `image2` shows the two images side by side
 const RESEARCH = [
   {
     project: "Exploration in POMDPs (In Progress)",
@@ -185,7 +186,15 @@ const SKILLS = [
 const HOBBIES = ["Science Fiction", "Sailing", "Basketball"];
 
 // === UI helpers ===
-const Section = ({ icon: Icon, title, children }: any) => (
+const Section = ({
+  icon: Icon,
+  title,
+  children,
+}: {
+  icon: LucideIcon;
+  title: string;
+  children: ReactNode;
+}) => (
   <section className="max-w-5xl mx-auto px-4 sm:px-6 md:px-8 mb-10">
     <div className="flex items-center gap-3 mb-5">
       <Icon className="w-5 h-5" />
@@ -195,9 +204,83 @@ const Section = ({ icon: Icon, title, children }: any) => (
   </section>
 );
 
-const Pill = ({ children }: any) => (
+const Panel = ({ children }: { children: ReactNode }) => (
+  <Card className="rounded-2xl">
+    <CardContent className="p-5">{children}</CardContent>
+  </Card>
+);
+
+// Title and subtitle on the left, date on the right; children render under the subtitle.
+const EntryHeader = ({
+  title,
+  subtitle,
+  time,
+  children,
+}: {
+  title: string;
+  subtitle: string;
+  time: string;
+  children?: ReactNode;
+}) => (
+  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+    <div>
+      <h3 className="font-semibold">{title}</h3>
+      <p className="text-sm text-slate-600">{subtitle}</p>
+      {children}
+    </div>
+    <div className="text-sm text-slate-600">{time}</div>
+  </div>
+);
+
+const Bullets = ({ items }: { items: string[] }) => (
+  <ul className="mt-3 list-disc pl-5 text-sm text-slate-700 space-y-1">
+    {items.map((item, i) => (
+      <li key={i}>{item}</li>
+    ))}
+  </ul>
+);
+
+const Pill = ({ children }: { children: ReactNode }) => (
   <Badge className="rounded-2xl px-3 py-1 text-sm">{children}</Badge>
 );
+
+const TextLink = ({ href, children }: { href: string; children: ReactNode }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noreferrer"
+    className="text-blue-600 hover:text-blue-800 underline"
+  >
+    {children}
+  </a>
+);
+
+const LinkButton = ({
+  href,
+  variant,
+  children,
+}: {
+  href: string;
+  variant: ButtonProps["variant"];
+  children: ReactNode;
+}) => (
+  <Button asChild size="sm" variant={variant} className="rounded-2xl">
+    <a href={href} target="_blank" rel="noreferrer">
+      {children}
+    </a>
+  </Button>
+);
+
+const LinkButtons = ({ links }: { links?: { label: string; href: string }[] }) =>
+  links?.length ? (
+    <div className="mt-3 flex flex-wrap gap-2">
+      {links.map((l) => (
+        <LinkButton key={l.href} href={l.href} variant="outline">
+          {l.label} <ExternalLink className="w-4 h-4 ml-1" />
+        </LinkButton>
+      ))}
+    </div>
+  ) : null;
 
 // === Page ===
 export default function PersonalSite() {
@@ -240,23 +323,13 @@ export default function PersonalSite() {
                 I am a fourth year undergraduate student concentrated in
                 Computer Science and Applied Mathematics at Brown University. I
                 currently conduct research in the{" "}
-                <a
-                  href="http://irl.cs.brown.edu/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-blue-600 hover:text-blue-800 underline"
-                >
+                <TextLink href="http://irl.cs.brown.edu/">
                   Intelligent Robot Lab (IRL)
-                </a>
+                </TextLink>{" "}
                 advised by{" "}
-                <a
-                  href="https://cs.brown.edu/people/gdk/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-blue-600 hover:text-blue-800 underline"
-                >
+                <TextLink href="https://cs.brown.edu/people/gdk/">
                   Prof. George Konidaris
-                </a>
+                </TextLink>
                 . My current research interest lies in continual learning and
                 reinforcement learning in partially observable environments.
                 Outside of research, I enjoy everything about
@@ -265,29 +338,13 @@ export default function PersonalSite() {
               </p>
             </div>
             <div className="mt-4 flex flex-wrap gap-2">
-              <Button
-                asChild
-                size="sm"
-                variant="secondary"
-                className="rounded-2xl"
-              >
-                <a href={PROFILE.cvPath} target="_blank" rel="noreferrer">
-                  <FileText className="w-4 h-4 mr-1" /> CV
-                </a>
-              </Button>
-              {/* Optional social links */}
+              <LinkButton href={PROFILE.cvPath} variant="secondary">
+                <FileText className="w-4 h-4 mr-1" /> CV
+              </LinkButton>
               {PROFILE.socials.map((s) => (
-                <Button
-                  key={s.label}
-                  asChild
-                  size="sm"
-                  variant="ghost"
-                  className="rounded-2xl"
-                >
-                  <a href={s.href} target="_blank" rel="noreferrer">
-                    {s.label} <ExternalLink className="w-4 h-4 ml-1" />
-                  </a>
-                </Button>
+                <LinkButton key={s.label} href={s.href} variant="ghost">
+                  {s.label} <ExternalLink className="w-4 h-4 ml-1" />
+                </LinkButton>
               ))}
             </div>
           </div>
@@ -298,22 +355,10 @@ export default function PersonalSite() {
       <Section icon={GraduationCap} title="Education">
         <div className="grid gap-4">
           {EDUCATION.map((e) => (
-            <Card key={e.school} className="rounded-2xl">
-              <CardContent className="p-5">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
-                  <div>
-                    <h3 className="font-semibold">{e.school}</h3>
-                    <p className="text-sm text-slate-600">{e.degree}</p>
-                  </div>
-                  <div className="text-sm text-slate-600">{e.time}</div>
-                </div>
-                <ul className="mt-3 list-disc pl-5 text-sm text-slate-700 space-y-1">
-                  {e.details.map((d, i) => (
-                    <li key={i}>{d}</li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+            <Panel key={e.school}>
+              <EntryHeader title={e.school} subtitle={e.degree} time={e.time} />
+              <Bullets items={e.details} />
+            </Panel>
           ))}
         </div>
       </Section>
@@ -321,67 +366,35 @@ export default function PersonalSite() {
       {/* Publications */}
       <Section icon={BookOpen} title="Publications">
         <div className="grid gap-4">
-          {PUBLICATIONS.map((p, idx) => (
-            <Card key={idx} className="rounded-2xl">
-              <CardContent className="p-5">
-                {p.image && (
-                  <div className="mb-4">
-                    {p.image.endsWith(".pdf") ? (
-                      <embed
-                        src={p.image}
-                        type="application/pdf"
-                        className="w-full max-w-2xl mx-auto rounded-lg shadow-sm"
-                        style={{ height: "500px" }}
-                      />
-                    ) : (
-                      <img
-                        src={p.image}
-                        alt={`${p.title} visualization`}
-                        className="w-full max-w-2xl mx-auto rounded-lg shadow-sm"
-                      />
-                    )}
-                  </div>
-                )}
-                <h3 className="font-semibold leading-snug">{p.title}</h3>
-                <p
-                  className="mt-1 text-sm text-slate-700"
-                  dangerouslySetInnerHTML={{ __html: p.authors }}
-                ></p>
-                <p className="mt-1 text-sm text-slate-600">{p.venue}</p>
-                {p.abstract && (
-                  <p className="mt-3 text-sm text-slate-600 leading-relaxed">
-                    {p.abstract}
-                  </p>
-                )}
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {p.badges.map((b) => (
-                    <Pill key={b}>{b}</Pill>
-                  ))}
+          {PUBLICATIONS.map((p) => (
+            <Panel key={p.title}>
+              {p.image && (
+                <div className="mb-4">
+                  <img
+                    src={p.image}
+                    alt={`${p.title} visualization`}
+                    className="w-full max-w-2xl mx-auto rounded-lg shadow-sm"
+                  />
                 </div>
-                {!!p.links?.length && (
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {p.links.map((l) => (
-                      <Button
-                        key={l.href}
-                        asChild
-                        size="sm"
-                        variant="outline"
-                        className="rounded-2xl"
-                      >
-                        <a
-                          href={l.href}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center"
-                        >
-                          {l.label} <ExternalLink className="w-4 h-4 ml-1" />
-                        </a>
-                      </Button>
-                    ))}
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+              )}
+              <h3 className="font-semibold leading-snug">{p.title}</h3>
+              <p
+                className="mt-1 text-sm text-slate-700"
+                dangerouslySetInnerHTML={{ __html: p.authors }}
+              />
+              <p className="mt-1 text-sm text-slate-600">{p.venue}</p>
+              {p.abstract && (
+                <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                  {p.abstract}
+                </p>
+              )}
+              <div className="mt-2 flex flex-wrap gap-2">
+                {p.badges.map((b) => (
+                  <Pill key={b}>{b}</Pill>
+                ))}
+              </div>
+              <LinkButtons links={p.links} />
+            </Panel>
           ))}
         </div>
       </Section>
@@ -389,79 +402,36 @@ export default function PersonalSite() {
       {/* Research */}
       <Section icon={Layers} title="Research">
         <div className="grid gap-4">
-          {RESEARCH.map((r, i) => (
-            <Card key={i} className="rounded-2xl">
-              <CardContent className="p-5">
-                {r.image && (
-                  <div className="mb-4">
-                    {r.image.endsWith(".pdf") ? (
-                      <embed
-                        src={r.image}
-                        type="application/pdf"
-                        className="w-full max-w-2xl mx-auto rounded-lg shadow-sm"
-                        style={{ height: "500px" }}
-                      />
-                    ) : r.image2 ? (
-                      <div className="flex flex-col md:flex-row gap-4 justify-center">
+          {RESEARCH.map((r) => (
+            <Panel key={r.project}>
+              {r.image && (
+                <div className="mb-4">
+                  {r.image2 ? (
+                    <div className="flex flex-col md:flex-row gap-4 justify-center">
+                      {[r.image, r.image2].map((src, n) => (
                         <img
-                          src={r.image}
-                          alt={`${r.project} visualization 1`}
+                          key={src}
+                          src={src}
+                          alt={`${r.project} visualization ${n + 1}`}
                           className="w-full md:w-1/2 max-w-2xl mx-auto rounded-lg shadow-sm"
                           style={{ height: "400px", objectFit: "contain" }}
                         />
-                        <img
-                          src={r.image2}
-                          alt={`${r.project} visualization 2`}
-                          className="w-full md:w-1/2 max-w-2xl mx-auto rounded-lg shadow-sm"
-                          style={{ height: "400px", objectFit: "contain" }}
-                        />
-                      </div>
-                    ) : (
-                      <img
-                        src={r.image}
-                        alt={`${r.project} visualization`}
-                        className="w-full max-w-2xl mx-auto rounded-lg shadow-sm"
-                        style={{ objectFit: "contain" }}
-                      />
-                    )}
-                  </div>
-                )}
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
-                  <div>
-                    <h3 className="font-semibold">{r.project}</h3>
-                    <p className="text-sm text-slate-600">{r.org}</p>
-                  </div>
-                  <div className="text-sm text-slate-600">{r.time}</div>
+                      ))}
+                    </div>
+                  ) : (
+                    <img
+                      src={r.image}
+                      alt={`${r.project} visualization`}
+                      className="w-full max-w-2xl mx-auto rounded-lg shadow-sm"
+                      style={{ objectFit: "contain" }}
+                    />
+                  )}
                 </div>
-                <ul className="mt-3 list-disc pl-5 text-sm text-slate-700 space-y-1">
-                  {r.bullets.map((b, idx) => (
-                    <li key={idx}>{b}</li>
-                  ))}
-                </ul>
-                {!!r.links?.length && (
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {r.links.map((l) => (
-                      <Button
-                        key={l.href}
-                        asChild
-                        size="sm"
-                        variant="outline"
-                        className="rounded-2xl"
-                      >
-                        <a
-                          href={l.href}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center"
-                        >
-                          {l.label} <ExternalLink className="w-4 h-4 ml-1" />
-                        </a>
-                      </Button>
-                    ))}
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+              )}
+              <EntryHeader title={r.project} subtitle={r.org} time={r.time} />
+              <Bullets items={r.bullets} />
+              <LinkButtons links={r.links} />
+            </Panel>
           ))}
         </div>
       </Section>
@@ -479,40 +449,15 @@ export default function PersonalSite() {
           </div>
           <div className="lg:w-2/3 flex-1">
             <div className="grid gap-4">
-              {EXPERIENCE.map((x, i) => (
-                <Card key={i} className="rounded-2xl">
-                  <CardContent className="p-5">
-                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
-                      <div>
-                        <h3 className="font-semibold">{x.role}</h3>
-                        <p className="text-sm text-slate-600">{x.org}</p>
-                        {x.pi && (
-                          <p className="text-sm text-slate-600 mt-1">
-                            PI:{" "}
-                            {x.piLink ? (
-                              <a
-                                href={x.piLink}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="text-blue-600 hover:text-blue-800 underline"
-                              >
-                                {x.pi}
-                              </a>
-                            ) : (
-                              x.pi
-                            )}
-                          </p>
-                        )}
-                      </div>
-                      <div className="text-sm text-slate-600">{x.time}</div>
-                    </div>
-                    <ul className="mt-3 list-disc pl-5 text-sm text-slate-700 space-y-1">
-                      {x.bullets.map((b, idx) => (
-                        <li key={idx}>{b}</li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
+              {EXPERIENCE.map((x) => (
+                <Panel key={x.role}>
+                  <EntryHeader title={x.role} subtitle={x.org} time={x.time}>
+                    <p className="text-sm text-slate-600 mt-1">
+                      PI: <TextLink href={x.piLink}>{x.pi}</TextLink>
+                    </p>
+                  </EntryHeader>
+                  <Bullets items={x.bullets} />
+                </Panel>
               ))}
             </div>
           </div>
@@ -522,35 +467,14 @@ export default function PersonalSite() {
       {/* Teaching */}
       <Section icon={BookOpen} title="Undergraduate Teaching Assistant">
         <div className="grid gap-4">
-          {TEACHING.map((t, i) => (
-            <Card key={i} className="rounded-2xl">
-              <CardContent className="p-5">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
-                  <div>
-                    <h3 className="font-semibold">{t.course}</h3>
-                    <p className="text-sm text-slate-600">{t.org}</p>
-                    {t.lecturer && (
-                      <p className="text-sm text-slate-600 mt-1">
-                        Lecturer:{" "}
-                        {t.lecturerLink ? (
-                          <a
-                            href={t.lecturerLink}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="text-blue-600 hover:text-blue-800 underline"
-                          >
-                            {t.lecturer}
-                          </a>
-                        ) : (
-                          t.lecturer
-                        )}
-                      </p>
-                    )}
-                  </div>
-                  <div className="text-sm text-slate-600">{t.time}</div>
-                </div>
-              </CardContent>
-            </Card>
+          {TEACHING.map((t) => (
+            <Panel key={t.course}>
+              <EntryHeader title={t.course} subtitle={t.org} time={t.time}>
+                <p className="text-sm text-slate-600 mt-1">
+                  Lecturer: <TextLink href={t.lecturerLink}>{t.lecturer}</TextLink>
+                </p>
+              </EntryHeader>
+            </Panel>
           ))}
         </div>
       </Section>
@@ -558,26 +482,19 @@ export default function PersonalSite() {
       {/* Skills & Hobbies */}
       <Section icon={Github} title="Skills & Hobbies">
         <div className="grid md:grid-cols-2 gap-4">
-          <Card className="rounded-2xl">
-            <CardContent className="p-5">
-              <h3 className="font-semibold mb-2">Skills</h3>
+          {[
+            { heading: "Skills", items: SKILLS },
+            { heading: "Hobbies", items: HOBBIES },
+          ].map(({ heading, items }) => (
+            <Panel key={heading}>
+              <h3 className="font-semibold mb-2">{heading}</h3>
               <div className="flex flex-wrap gap-2">
-                {SKILLS.map((s) => (
-                  <Pill key={s}>{s}</Pill>
+                {items.map((item) => (
+                  <Pill key={item}>{item}</Pill>
                 ))}
               </div>
-            </CardContent>
-          </Card>
-          <Card className="rounded-2xl">
-            <CardContent className="p-5">
-              <h3 className="font-semibold mb-2">Hobbies</h3>
-              <div className="flex flex-wrap gap-2">
-                {HOBBIES.map((h) => (
-                  <Pill key={h}>{h}</Pill>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+            </Panel>
+          ))}
         </div>
       </Section>
 
@@ -605,8 +522,7 @@ export default function PersonalSite() {
               </a>
             </div>
             <div className="text-slate-500">
-              © {new Date().getFullYear()} {PROFILE.name} • Updated:{" "}
-              {new Date().toLocaleString()} • Deployment Test
+              © {new Date().getFullYear()} {PROFILE.name}
             </div>
           </CardContent>
         </Card>
