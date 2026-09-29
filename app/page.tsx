@@ -23,7 +23,7 @@ import { motion } from "framer-motion";
 const PROFILE = {
   name: "Kaicheng (Kevin) Guo",
   title:
-    "PhD Student @ UPenn | Reinforcement Learning, Continual Learning, Partial Observability",
+    "PhD Student @ UPenn | Reinforcement Learning, Lifelong Learning",
   emailDisplay: "gkc@engineering.upenn.edu",
   emailHref: "mailto:gkc@engineering.upenn.edu",
   phone: "(401) 259-4369",
@@ -77,6 +77,21 @@ const PUBLICATIONS = [
       "Hessian",
       "Spectral Analysis",
     ],
+  },
+  {
+    title: "Exploring Non-Markov Environments Using Random Recurrent Memories",
+    authors:
+      "Ruo Yu Tao*, <strong>Kaicheng Guo</strong>*, Cameron Allen, Ronald Parr, George Konidaris",
+    venue:
+      "RL in Big Worlds Workshop, Reinforcement Learning Conference (RLC 2026)",
+    abstract:
+      "Exploring an environment requires a reinforcement learning agent to keep track of what it has already explored, which is difficult when observations do not fully reveal environment state. In the Markov setting, exploration algorithms have focused on achieving systematic coverage of observed states. These same methods have frequently been applied to the non-Markov setting, where they aim to achieve coverage over observations. However, decision-making in the non-Markov setting often depends on the agent's entire history, as opposed to only single observations. Unfortunately, achieving systematic coverage over the space of all trajectories is untenable: exploration over histories is exponentially expensive due to the dependence of the search space on the horizon. We therefore propose a new family of methods to featurize the agent's history with random recurrences. This produces finitely-sized random statistics, or random recurrent memories, over an agent's history, and we aim for coverage over these memories. We describe desirable properties for efficient history compression with random recurrences and propose a new architecture type, the tangent recurrent unit (TRU). We show that in a diverse suite of partially observable exploration tasks, tangent recurrent units, as well as other structured random recurrences, outperform popular methods that aim for observation coverage.",
+    image: "/random-recurrent-memories.png",
+    links: [
+      { label: "OpenReview", href: "https://openreview.net/forum?id=t5Vps9w3yD" },
+      { label: "PDF", href: "https://openreview.net/pdf?id=t5Vps9w3yD" },
+    ],
+    badges: ["Exploration", "POMDPs", "Random Recurrences", "Intrinsic Rewards"],
   },
   {
     title:
@@ -326,13 +341,14 @@ export default function PersonalSite() {
             </div>
             <div className="mt-4 text-sm text-slate-600 leading-relaxed">
               <p>
-                I am a PhD student at the University of Pennsylvania, advised
+                I am a first-year PhD student at the University of
+                Pennsylvania, advised
                 by{" "}
                 <TextLink href="https://www.engineering.upenn.edu/~eeaton/">
                   Prof. Eric Eaton
                 </TextLink>
-                . Previously, I studied Computer Science and Applied
-                Mathematics at Brown University, where I conducted research in
+                . Previously, I studied Computer Science and Mathematics at
+                Brown University, where I conducted research in
                 the{" "}
                 <TextLink href="http://irl.cs.brown.edu/">
                   Intelligent Robot Lab (IRL)
@@ -341,8 +357,8 @@ export default function PersonalSite() {
                 <TextLink href="https://cs.brown.edu/people/gdk/">
                   Prof. George Konidaris
                 </TextLink>
-                . My current research interest lies in continual learning and
-                reinforcement learning in partially observable environments.
+                . My current research interest lies in lifelong learning and
+                reinforcement learning.
                 Outside of research, I enjoy everything about
                 science-fiction—favorites include Interstellar, Westworld, and
                 The Three-Body Problem.
