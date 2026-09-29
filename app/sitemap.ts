@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 const BASE_URL = "https://kevinguo27.github.io";
-const IMAGES = ["/headshot-2026.jpg", "/spectral-collapse-visualization.jpg", "/pobax.jpg"];
+const IMAGES = ["/headshot-2026.jpg", "/spectral-collapse-eigenspectrum.png", "/pobax.jpg"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
